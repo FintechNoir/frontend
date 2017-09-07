@@ -1,0 +1,31 @@
+{{#if isModalOpen}}
+  <div class="modal-dialog-wrapper" {{action "close"}}></div>
+  <div class="modal-dialog {{animationClass}}">
+    <div class="modal-dialog-box">
+      <div id="top-left-corner" class="corner"></div>
+      <div id="top-right-corner" class="corner"></div>
+      <div id="bottom-left-corner" class="corner"></div>
+      <div id="bottom-right-corner" class="corner"></div>
+      {{#if isPlaying}}
+        <div id="pause" class="sound-control icon" {{action "pause"}}></div>
+      {{else}}
+        <div id="play" class="sound-control icon" {{action "play"}}></div>
+      {{/if}}
+        <div id="close" class="icon" {{action "close"}}></div>
+      <div class="header-wrapper">
+        <div class="icon-wrapper">
+          <div id={{item.id}} class="icon"></div>
+        </div>
+        <div class="title">
+          <div class="header">{{item.title}}</div>
+          <div class="subheader">{{item.subtitle}}</div>
+        </div>
+      </div>
+      <div class="body-wrapper">
+        <div class="content">
+          {{{item.content}}}
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}

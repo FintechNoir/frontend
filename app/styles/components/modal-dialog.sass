@@ -1,0 +1,106 @@
+.modal-dialog-wrapper
+  position: fixed
+  z-index: 5
+  width: 100vw
+  height: 100vh
+  background: rgba($body-background, .5)
+.modal-dialog
+  position: fixed
+  z-index: 6
+  top: 50%
+  right: 300px
+  margin: -350px 0
+  width: 70%
+  height: 700px
+  background: $modal-dialog-background
+  #close
+    position: absolute
+    top: 15px
+    right: 10px
+  .modal-dialog-box
+    position: relative
+    width: 100%
+    height: 700px
+    border: 4px solid $modal-border-color
+    box-sizing: border-box
+    .sound-control
+      position: absolute
+      width: 50px
+      height: 47px
+      top: 15px
+      right: 70px
+      z-index: 5
+      cursor: pointer
+    .corner
+      position: absolute
+      width: 50px
+      height: 50px
+      &#top-left-corner
+        top: -4px
+        left: -4px
+        transform: rotate(90deg)
+        background: url("/images/components/modal-dialog/corner.png") left top no-repeat
+      &#top-right-corner
+        top: -4px
+        right: -4px
+        transform: rotate(180deg)
+        background: url("/images/components/modal-dialog/corner.png") left top no-repeat
+      &#bottom-left-corner
+        bottom: -4px
+        left: -4px
+        background: url("/images/components/modal-dialog/corner_white.png") left top no-repeat
+      &#bottom-right-corner
+        bottom: -4px
+        right: -4px
+        transform: rotate(270deg)
+        background: url("/images/components/modal-dialog/corner_white.png") left top no-repeat
+    .header-wrapper
+      width: 100%
+      height: 120px
+      background: $modal-header-background
+      padding: 10px
+      box-sizing: border-box
+      .title
+        width: calc(100% - 100px)
+        height: 120px
+        word-wrap: break-word
+        margin-left: 15px
+        float: left
+        .header
+          font-family: WhitneySemiBold, serif
+          font-size: 40px
+        .subheader
+          font-family: WhitneyBook, serif
+          font-size: 20px
+          color: $modal-subheader-color
+      .icon-wrapper
+        position: relative
+        background: none
+        width: 50px
+        height: 100px
+        float: left
+        .icon
+          position: relative
+    .body-wrapper
+      padding: 10px
+      h2
+        font-size: 30px
+        font-family: WhitneySemiBold, serif
+      .content
+        max-height: 420px
+        overflow-y: auto
+        p
+          font-family: WhitneyBook, serif
+        ul
+          margin: 0 0 0 20px
+          padding: 0
+          list-style-type: square
+          li
+            font-family: WhitneyBook, serif
+            color: $ul-marker-color
+            margin-bottom: 15px
+            &:last-of-type
+              margin-bottom: 0
+            span
+              color: $body-background
+

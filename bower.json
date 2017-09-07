@@ -1,0 +1,21 @@
+{
+  "name": "meeter-greeter",
+  "description": "",
+  "main": "",
+  "authors": [
+    "topolnyak012@gmail.com <basset2011>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "animate.css": "^3.5.2",
+    "ion-sound": "ionsound#^3.0.7"
+  }
+}

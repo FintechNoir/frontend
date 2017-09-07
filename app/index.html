@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Meeter Greeter Demo Page</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{content-for "head"}}
+
+    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/meeter-greeter.css">
+
+    {{content-for "head-footer"}}
+  </head>
+  <body>
+    {{content-for "body"}}
+
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/meeter-greeter.js"></script>
+
+    {{content-for "body-footer"}}
+    <script>
+      $( document ).ready(function () {
+        $('.icon-wrapper').mouseenter( function () {
+          $(this).find('.icon').addClass('animated tada');
+        }).mouseleave(function () {
+          $(this).find('.icon').removeClass('animated tada');
+        })
+      })
+    </script>
+  </body>
+</html>
