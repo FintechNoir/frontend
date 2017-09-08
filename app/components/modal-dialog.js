@@ -50,7 +50,7 @@ export default Ember.Component.extend({
       let currentSoundIndex = this.get('currentSoundIndex');
       ion.sound.stop(sounds[currentSoundIndex]);
       this.set('isOpen', false);
-      this.set('currentSoundIndex', -1);
+      this.set('currentSoundIndex', 0);
       Ember.run.later(this, function () {
         this.toggleProperty('isModalOpen');
       }, 600);
