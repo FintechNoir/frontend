@@ -13,11 +13,11 @@ export default Ember.Component.extend({
         let sounds = this.get('item.sounds');
         let item = this.get('item');
         let soundsNames = sounds.map(function (sound) {
-          return {name: sound};
+          return {name: sound, path: `sounds/${item.id}/`};
         });
+        ion.sound.destroy();
         ion.sound({
           sounds: soundsNames,
-          path: `sounds/${item.id}/`,
           preload: true,
           ended_callback: () => {
             let currentSoundIndex = this.get('currentSoundIndex');

@@ -25,11 +25,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.speechkitAPIKey = '683fc7b1-1e8f-4a17-a536-a0342e61cbd5';
   }
 
   if (environment === 'test') {
@@ -44,7 +40,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'staging') {
-
+    ENV.speechkitAPIKey = '683fc7b1-1e8f-4a17-a536-a0342e61cbd5';
   }
 
   if (environment === 'production') {

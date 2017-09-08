@@ -1,1 +1,6 @@
 <div id="bot"></div>
+{{#if (eq state "greating")}}
+  <div id="button" {{action "startVoiceRecording"}}></div>
+{{else}}
+  <div id="button" {{action "stopVoiceRecording"}}></div>
+{{/if}}
