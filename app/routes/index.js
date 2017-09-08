@@ -132,7 +132,7 @@ export default Ember.Route.extend({
     });
 
     let medtech = Ember.Object.create({
-      id: 'medtech',
+      id: 'med-tech',
       title: 'MedTech',
       sounds: ['1'],
       content: '<ul>' +
