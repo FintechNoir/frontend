@@ -42,6 +42,7 @@ module.exports = function(environment) {
 
   if (environment === 'staging') {
     ENV.speechkitAPIKey = '683fc7b1-1e8f-4a17-a536-a0342e61cbd5';
+    ENV.ApiAiAPIKey = 'd1d3385de92a47ddbb06f74035f2fd33';
   }
 
   if (environment === 'production') {
