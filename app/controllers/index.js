@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
   actions: {
     openModal: function (item) {
       this.set('modalItem', item);
-      this.set('isModalOpen', true)
+      this.set('isModalOpen', true);
     }
   }
 });

@@ -25,25 +25,27 @@ export default Ember.Component.extend({
         },
         dataCallback: (text, done, merge, words) => {
           if (done){
-            const promise = client.textRequest(text);
-            promise.then ((serverResponse) => {
-              const modalIds = this.get('modalIds');
-              const result = serverResponse.result.fulfillment.speech;
-              if (modalIds.indexOf(result) !== -1) {
-                Ember.$(`#${result}`).click();
-              } else {
-                let custom = Ember.Object.create({
-                  id: 'chat-bot',
-                  title: 'Мой ответ',
-                  content: `<p>${result}</p>`
-                });
-                this.set('modalItem', custom);
-                this.toggleProperty('isModalOpen');
-              }
-            }).catch(function (error) {
-              this.set('state', 'greeting');
-              console.log(error);
-            });
+            if (text.length > 0){
+              const promise = client.textRequest(text);
+              promise.then ((serverResponse) => {
+                const modalIds = this.get('modalIds');
+                const result = serverResponse.result.fulfillment.speech;
+                if (modalIds.indexOf(result) !== -1) {
+                  Ember.$(`#${result}`).click();
+                } else {
+                  let custom = Ember.Object.create({
+                    id: 'chat-bot',
+                    title: 'Мой ответ',
+                    content: `<p>${result}</p>`
+                  });
+                  this.set('modalItem', custom);
+                  this.toggleProperty('isModalOpen');
+                }
+              }).catch((error) => {
+                this.set('state', 'greeting');
+                console.log(error);
+              });
+            }
           }
         },
         errorCallback: function (err) {
