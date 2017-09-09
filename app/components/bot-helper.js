@@ -5,7 +5,7 @@ import config from '../config/environment';
 export default Ember.Component.extend({
   classNames: ['bot-helper-wrapper'],
   streamer: null,
-  state: 'greating',
+  state: 'greeting',
 
   didInsertElement() {
     let streamer = new ya.speechkit.SpeechRecognition();
@@ -17,7 +17,10 @@ export default Ember.Component.extend({
       window.ya.speechkit.settings.apikey = config.speechkitAPIKey;
       this.get('streamer').start({
         initCallback: () => {
-          this.set('state', 'listening');
+          this.set('state', 'greeting-to-recording');
+          Ember.run.later(this, function () {
+            this.set('state', 'recording');
+          }, 5000);
           console.log("Началась запись звука.");
         },
         // Данная функция вызывается многократно.
@@ -26,7 +29,6 @@ export default Ember.Component.extend({
         // будет передан финальный результат.
         dataCallback: function (text, done, merge, words) {
           if (done){
-            console.log('b');
             console.log("Распознанный текст: " + text);
           }
         },
@@ -36,8 +38,10 @@ export default Ember.Component.extend({
         },
         // Будет вызвана после остановки распознавания.
         stopCallback: () => {
-          console.log('a');
-          this.set('state', 'greating');
+          this.set('state', 'recording-to-waiting');
+          Ember.run.later(this, function () {
+            this.set('state', 'greeting');
+          }, 5000);
           console.log("Запись звука прекращена.");
         },
         // Возвращать ли промежуточные результаты.

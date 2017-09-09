@@ -1,20 +1,28 @@
 .bot-helper-wrapper
   position: fixed
-  bottom: 15px
+  bottom: 5px
   right: 15px
   z-index: 6
   background: $body-background
   #bot
-    width: 230px
-    height: 320px
-    background: url("/images/bot.png") no-repeat
-    background-size: contain
+    width: 312px
+    height: 460px
+    &.greeting
+      background: url("/images/components/bot-helper/bot_greeting.gif") center no-repeat
+      background-size: contain
+    &.greeting-to-recording
+      background: url("/images/components/bot-helper/bot_greeting_to_recording.gif") center no-repeat
+      background-size: contain
+    &.recording
+      background: url("/images/components/bot-helper/bot_recording.gif") center no-repeat
+      background-size: contain
+    &.recording-to-waiting
+      background: url("/images/components/bot-helper/bot_recording_to_waiting.gif") center no-repeat
+      background-size: contain
   #button
     width: 45px
     height: 45px
     cursor: pointer
     position: absolute
-    top: 80px
-    right: 60px
-
-
+    top: 210px
+    right: 100px
