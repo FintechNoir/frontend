@@ -1,6 +1,9 @@
-<div id="bot" class={{state}} loop=infinite></div>
-{{#if (eq state "greeting")}}
-  <div id="button" {{action "startVoiceRecording"}}></div>
-{{else}}
-  <div id="button" {{action "stopVoiceRecording"}}></div>
-{{/if}}
+<div id="bot"></div>
+{{#unless isPlaying}}
+  {{#if (eq state "greeting")}}
+    <div id="button" class="play" {{action "startVoiceRecording"}}></div>
+  {{/if}}
+  {{#if (eq state "recording")}}
+    <div id="button" class="stop" {{action "stopVoiceRecording"}}></div>
+  {{/if}}
+{{/unless}}

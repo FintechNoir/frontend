@@ -1,4 +1,5 @@
 /*global ya*/
+/*global ApiAi*/
 import Ember from 'ember';
 import config from '../config/environment';
 
@@ -6,6 +7,8 @@ export default Ember.Component.extend({
   classNames: ['bot-helper-wrapper'],
   streamer: null,
   state: 'greeting',
+  modalIds: ['iot', 'voice-recognition', 'vr', 'med-tech', 'transfers', 'open-mobile', 'fintech-events', 'life-style',
+             'srl', 'blockchain', 'digital-ethics', 'banking', 'chat-bot', 'hr-tech'],
 
   didInsertElement() {
     let streamer = new ya.speechkit.SpeechRecognition();
@@ -14,37 +17,40 @@ export default Ember.Component.extend({
 
   actions: {
     startVoiceRecording: function () {
+      const client = new ApiAi.ApiAiClient({accessToken: config.ApiAiAPIKey});
       window.ya.speechkit.settings.apikey = config.speechkitAPIKey;
       this.get('streamer').start({
         initCallback: () => {
-          this.set('state', 'greeting-to-recording');
-          Ember.run.later(this, function () {
-            this.set('state', 'recording');
-          }, 5000);
-          console.log("Началась запись звука.");
+          this.set('state', 'recording');
         },
-        // Данная функция вызывается многократно.
-        // Ей передаются промежуточные результаты распознавания.
-        // После остановки распознавания этой функции
-        // будет передан финальный результат.
-        dataCallback: function (text, done, merge, words) {
+        dataCallback: (text, done, merge, words) => {
           if (done){
-            console.log("Распознанный текст: " + text);
+            const promise = client.textRequest(text);
+            promise.then ((serverResponse) => {
+              const modalIds = this.get('modalIds');
+              const result = serverResponse.result.fulfillment.speech;
+              if (modalIds.indexOf(result) !== -1) {
+                Ember.$(`#${result}`).click();
+              } else {
+                let custom = Ember.Object.create({
+                  id: 'chat-bot',
+                  title: 'Мой ответ',
+                  content: `<p>${result}</p>`
+                });
+                this.set('modalItem', custom);
+                this.toggleProperty('isModalOpen');
+              }
+            }).catch(function (error) {
+              console.log(error);
+            });
           }
         },
-        // Вызывается при возникновении ошибки (например, если передан неверный API-ключ).
         errorCallback: function (err) {
           console.log("Возникла ошибка: " + err);
         },
-        // Будет вызвана после остановки распознавания.
         stopCallback: () => {
-          this.set('state', 'recording-to-waiting');
-          Ember.run.later(this, function () {
-            this.set('state', 'greeting');
-          }, 5000);
-          console.log("Запись звука прекращена.");
+          this.set('state', 'greeting');
         },
-        // Возвращать ли промежуточные результаты.
         particialResults: false,
         utteranceSilence: 60
       });

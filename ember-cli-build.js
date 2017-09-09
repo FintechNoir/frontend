@@ -11,6 +11,7 @@ module.exports = function(defaults) {
   app.import("bower_components/animate.css/animate.min.css");
   app.import("bower_components/wow/dist/wow.min.js");
   app.import("bower_components/ion-sound/js/ion.sound.min.js");
+  app.import("vendor/js/ApiAi.min.js");
 
   return app.toTree();
 };

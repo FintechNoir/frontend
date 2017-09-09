@@ -6,10 +6,12 @@
       <div id="top-right-corner" class="corner"></div>
       <div id="bottom-left-corner" class="corner"></div>
       <div id="bottom-right-corner" class="corner"></div>
-      {{#if isPlaying}}
-        <div id="pause" class="sound-control icon" {{action "pause"}}></div>
-      {{else}}
-        <div id="play" class="sound-control icon" {{action "play"}}></div>
+      {{#if item.sounds}}
+        {{#if isPlaying}}
+          <div id="pause" class="sound-control icon" {{action "pause"}}></div>
+        {{else}}
+          <div id="play" class="sound-control icon" {{action "play"}}></div>
+        {{/if}}
       {{/if}}
         <div id="close" class="icon" {{action "close"}}></div>
       <div class="header-wrapper">
