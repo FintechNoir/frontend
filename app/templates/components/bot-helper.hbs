@@ -1,5 +1,5 @@
 <div id="bot"></div>
-{{#unless isPlaying}}
+{{#unless (or isPlaying isModalOpen)}}
   {{#if (eq state "greeting")}}
     <div id="button" class="play" {{action "startVoiceRecording"}}></div>
   {{/if}}
