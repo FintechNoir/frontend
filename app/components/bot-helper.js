@@ -41,11 +41,13 @@ export default Ember.Component.extend({
                 this.toggleProperty('isModalOpen');
               }
             }).catch(function (error) {
+              this.set('state', 'greeting');
               console.log(error);
             });
           }
         },
         errorCallback: function (err) {
+          this.set('state', 'greeting');
           console.log("Возникла ошибка: " + err);
         },
         stopCallback: () => {
